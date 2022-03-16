@@ -19,7 +19,13 @@ const generalError = (
   debug(chalk.red(error.message));
 
   if (error instanceof ValidationError) {
-    debug(chalk.red(error.details));
+    debug(
+      chalk.red(
+        error.details.body
+          ? error.details.body[0].message
+          : error.details.headers[0].message
+      )
+    );
   }
 
   const errorResponse = {
