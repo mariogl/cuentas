@@ -7,5 +7,5 @@ const userDataMinimums = {
   password: userpasswordMinLength,
   name: userNameMinLength,
 };
-const a = 3;
+
 module.exports = userDataMinimums;
