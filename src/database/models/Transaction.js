@@ -18,6 +18,6 @@ const TransactionSchema = new Schema({
     ref: "Category",
   },
 });
-const Transaction = model("User", TransactionSchema, "transactions");
+const Transaction = model("Transaction", TransactionSchema, "transactions");
 
 module.exports = Transaction;
