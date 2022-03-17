@@ -9,7 +9,7 @@
     "start-dev": "nodemon src -q",
     "test-ci": "jest src",
     "test": "jest src --watchAll",
-    "test-coverage": "jest src --watchAll --coverage"
+    "test-coverage": "jest src --watchAll=false --coverage"
   },
   "keywords": [],
   "author": "",
