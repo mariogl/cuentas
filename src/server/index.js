@@ -8,6 +8,7 @@ const auth = require("./middlewares/auth");
 const { generalError, notFoundError } = require("./middlewares/errors");
 const usersRouter = require("./routes/usersRouter");
 const { authUserRequestSchema } = require("./schemas/usersSchemas");
+const categoriesRouter = require("./routes/categoriesRouter");
 const transactionsRouter = require("./routes/transactionsRouter");
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use("/users", usersRouter);
 app.use(validate(authUserRequestSchema), auth);
+app.use("/categories", categoriesRouter);
 app.use("/transactions", transactionsRouter);
 
 app.use(notFoundError);
