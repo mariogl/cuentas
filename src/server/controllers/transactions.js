@@ -4,10 +4,24 @@ const chalk = require("chalk");
 const Transaction = require("../../database/models/Transaction");
 
 const getTransactions = async (req, res) => {
-  const transactions = await Transaction.find();
-  res.json({
-    transactions,
-  });
+  const { search } = req.params;
+
+  try {
+    const searchObject = search
+      ? {}
+      : {
+          description: {
+            $regex: search,
+            $options: "i",
+          },
+        };
+    const transactions = await Transaction.find(searchObject);
+    res.json({
+      transactions,
+    });
+  } catch (error) {
+    debug(chalk.red(error.message));
+  }
 };
 
 const createTransaction = async (req, res, next) => {
