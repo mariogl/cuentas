@@ -8,14 +8,16 @@ const getTransactions = async (req, res) => {
 
   try {
     const searchObject = search
-      ? {}
-      : {
+      ? {
           description: {
             $regex: search,
             $options: "i",
           },
-        };
-    const transactions = await Transaction.find(searchObject);
+        }
+      : {};
+    const transactions = await Transaction.find(searchObject).populate(
+      "category"
+    );
     res.json({
       transactions,
     });
