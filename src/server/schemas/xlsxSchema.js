@@ -1,5 +1,5 @@
 const xlsxSchema = {
-  "DATA D'OPERACIÓ": {
+  "DATA VALOR": {
     prop: "date",
     type: String,
     required: true,

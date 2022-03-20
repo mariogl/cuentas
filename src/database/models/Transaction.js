@@ -21,6 +21,10 @@ const TransactionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Category",
   },
+  tags: {
+    type: [Schema.Types.ObjectId],
+    ref: "Tag",
+  },
 });
 const Transaction = model("Transaction", TransactionSchema, "transactions");
 

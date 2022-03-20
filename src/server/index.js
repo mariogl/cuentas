@@ -9,6 +9,7 @@ const { generalError, notFoundError } = require("./middlewares/errors");
 const usersRouter = require("./routes/usersRouter");
 const { authUserRequestSchema } = require("./schemas/usersSchemas");
 const categoriesRouter = require("./routes/categoriesRouter");
+const tagsRouter = require("./routes/tagsRouter");
 const transactionsRouter = require("./routes/transactionsRouter");
 const xlsxRouter = require("./routes/xlsxRouter");
 
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use("/users", usersRouter);
 app.use(validate(authUserRequestSchema), auth);
 app.use("/categories", categoriesRouter);
+app.use("/tags", tagsRouter);
 app.use("/transactions", transactionsRouter);
 app.use("/xlsx", xlsxRouter);
 
