@@ -1,14 +1,13 @@
 const { Joi } = require("express-validation");
 Joi.objectId = require("joi-objectid")(Joi);
 
-const categorySchema = {
+const tagSchema = {
   body: Joi.object({
     id: Joi.objectId(),
     name: Joi.string().required(),
-    icon: Joi.string(),
   }),
 };
 
 module.exports = {
-  categorySchema,
+  tagSchema,
 };

@@ -12,7 +12,7 @@ const categoriesRouter = express.Router();
 
 categoriesRouter.get("/", getCategories);
 categoriesRouter.post("/", validate(categorySchema), createCategory);
-categoriesRouter.put("/:id", validate(categorySchema), updateCategory);
+categoriesRouter.put("/", validate(categorySchema), updateCategory);
 categoriesRouter.delete("/:id", deleteCategory);
 
 module.exports = categoriesRouter;

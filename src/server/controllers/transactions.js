@@ -16,9 +16,10 @@ const getTransactions = async (req, res) => {
         }
       : {};
 
-    const transactions = await Transaction.find(searchObject).populate(
-      "category"
-    );
+    const transactions = await Transaction.find(searchObject)
+      .sort({ date: "desc" })
+      .populate("category")
+      .populate("tags");
 
     res.json({
       transactions,

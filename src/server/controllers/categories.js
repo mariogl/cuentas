@@ -22,9 +22,11 @@ const createCategory = async (req, res, next) => {
 
 const updateCategory = async (req, res, next) => {
   const category = req.body;
-  const { id } = req.params;
   try {
-    const updatedCategory = await Category.findByIdAndUpdate(id, category);
+    const updatedCategory = await Category.findByIdAndUpdate(
+      category.id,
+      category
+    );
     res.status(200).json({ category: updatedCategory });
   } catch (error) {
     debug(chalk.red(error.message));
