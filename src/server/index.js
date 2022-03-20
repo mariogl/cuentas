@@ -10,6 +10,7 @@ const usersRouter = require("./routes/usersRouter");
 const { authUserRequestSchema } = require("./schemas/usersSchemas");
 const categoriesRouter = require("./routes/categoriesRouter");
 const transactionsRouter = require("./routes/transactionsRouter");
+const xlsxRouter = require("./routes/xlsxRouter");
 
 const app = express();
 app.use(
@@ -26,6 +27,7 @@ app.use("/users", usersRouter);
 app.use(validate(authUserRequestSchema), auth);
 app.use("/categories", categoriesRouter);
 app.use("/transactions", transactionsRouter);
+app.use("/xlsx", xlsxRouter);
 
 app.use(notFoundError);
 app.use(generalError);

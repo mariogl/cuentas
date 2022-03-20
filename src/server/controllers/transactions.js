@@ -15,11 +15,14 @@ const getTransactions = async (req, res) => {
           },
         }
       : {};
+
     const transactions = await Transaction.find(searchObject).populate(
       "category"
     );
+
     res.json({
       transactions,
+      total: transactions.length,
     });
   } catch (error) {
     debug(chalk.red(error.message));
@@ -65,9 +68,20 @@ const deleteTransaction = async (req, res, next) => {
   }
 };
 
+const deleteAllTransactions = async (req, res, next) => {
+  try {
+    await Transaction.deleteMany({});
+    res.json({ deleted: "ok" });
+  } catch (error) {
+    debug(chalk.red(error.message));
+    next(error);
+  }
+};
+
 module.exports = {
   getTransactions,
   createTransaction,
   updateTransaction,
   deleteTransaction,
+  deleteAllTransactions,
 };

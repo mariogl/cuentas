@@ -1,5 +1,5 @@
 const { Joi } = require("express-validation");
-const userDataMinimums = require("../utils/constants");
+const { userDataMinimums } = require("../utils/constants");
 
 const registerUserRequestSchema = {
   body: Joi.object({
