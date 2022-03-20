@@ -13,6 +13,10 @@ const TransactionSchema = new Schema({
     type: Date,
     required: true,
   },
+  balance: {
+    type: Number,
+    required: true,
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: "Category",

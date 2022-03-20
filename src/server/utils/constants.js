@@ -8,4 +8,9 @@ const userDataMinimums = {
   name: userNameMinLength,
 };
 
-module.exports = userDataMinimums;
+const uploadsDirectory = "uploads/";
+
+module.exports = {
+  userDataMinimums,
+  uploadsDirectory,
+};
