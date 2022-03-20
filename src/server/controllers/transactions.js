@@ -79,10 +79,25 @@ const deleteAllTransactions = async (req, res, next) => {
   }
 };
 
+const addTagToTransaction = async (req, res, next) => {
+  const { transactionId, tagId } = req.body;
+  try {
+    const updatedTransaction = await Transaction.findByIdAndUpdate(
+      transactionId,
+      { $push: { tags: tagId } }
+    );
+    res.json({ transaction: updatedTransaction });
+  } catch (error) {
+    debug(chalk.red(error.message));
+    next(error);
+  }
+};
+
 module.exports = {
   getTransactions,
   createTransaction,
   updateTransaction,
   deleteTransaction,
   deleteAllTransactions,
+  addTagToTransaction,
 };
