@@ -1,9 +1,14 @@
 const express = require("express");
 const multer = require("multer");
 const { loadXLSX } = require("../controllers/xlsx");
-const { uploadsDirectory } = require("../utils/constants");
+const { uploadsDirectory, maxUploadSize } = require("../utils/constants");
 
-const upload = multer({ dest: uploadsDirectory });
+const upload = multer({
+  dest: uploadsDirectory,
+  limits: {
+    fileSize: maxUploadSize,
+  },
+});
 
 const xlsxRouter = express.Router();
 
