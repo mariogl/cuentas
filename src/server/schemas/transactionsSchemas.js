@@ -11,4 +11,14 @@ const transactionSchema = {
   }),
 };
 
-module.exports = transactionSchema;
+const addTagToTransactionSchema = {
+  body: Joi.object({
+    transactionId: Joi.objectId().required(),
+    tagId: Joi.objectId().required(),
+  }),
+};
+
+module.exports = {
+  transactionSchema,
+  addTagToTransactionSchema,
+};

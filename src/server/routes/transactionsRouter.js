@@ -6,14 +6,23 @@ const {
   updateTransaction,
   deleteTransaction,
   deleteAllTransactions,
+  addTagToTransaction,
 } = require("../controllers/transactions");
-const transactionSchema = require("../schemas/transactionsSchemas");
+const {
+  transactionSchema,
+  addTagToTransactionSchema,
+} = require("../schemas/transactionsSchemas");
 
 const transactionsRouter = express.Router();
 
 transactionsRouter.get("/", getTransactions);
 transactionsRouter.post("/", validate(transactionSchema), createTransaction);
 transactionsRouter.put("/", validate(transactionSchema), updateTransaction);
+transactionsRouter.post(
+  "/tag",
+  validate(addTagToTransactionSchema),
+  addTagToTransaction
+);
 transactionsRouter.delete("/all", deleteAllTransactions);
 transactionsRouter.delete("/:id", deleteTransaction);
 
