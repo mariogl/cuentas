@@ -52,6 +52,7 @@ const loadXLSX = async (req, res, next) => {
     }
 
     fs.unlinkSync(file);
+
     res.json({
       transactionsRead: transactionsXlsx.length,
       transactionsImported,

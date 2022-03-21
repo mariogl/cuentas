@@ -4,8 +4,7 @@ const chalk = require("chalk");
 const Transaction = require("../../database/models/Transaction");
 
 const getTransactions = async (req, res) => {
-  const { search } = req.params;
-
+  const { search } = req.query;
   try {
     const searchObject = search
       ? {
@@ -21,9 +20,26 @@ const getTransactions = async (req, res) => {
       .populate("category")
       .populate("tags");
 
+    const positiveTransactionsSum = transactions.reduce(
+      (total, transaction) =>
+        total + (transaction.quantity < 0 ? transaction.quantity : 0),
+      0
+    );
+
+    const negativeTransactionsSum = transactions.reduce(
+      (total, transaction) =>
+        total + (transaction.quantity > 0 ? transaction.quantity : 0),
+      0
+    );
+
+    const sum = positiveTransactionsSum + negativeTransactionsSum;
+
     res.json({
       transactions,
       total: transactions.length,
+      sum,
+      expenses: negativeTransactionsSum,
+      income: positiveTransactionsSum,
     });
   } catch (error) {
     debug(chalk.red(error.message));
